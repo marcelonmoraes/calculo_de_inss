@@ -51,6 +51,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: calculo_de_inss_test
+      DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
       RAILS_ENV: test
     depends_on:
       - testdb

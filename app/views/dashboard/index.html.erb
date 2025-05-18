@@ -1,0 +1,6 @@
+<%= button_to "Sair", destroy_user_session_path, method: :delete, 
+              class: "btn btn-danger",
+              data: { 
+                turbo_confirm: "Tem certeza que deseja sair?",
+                turbo_method: :delete 
+              } %>
