@@ -54,11 +54,28 @@ group :development, :test do
 
   # fixtures replacement with a straightforward definition syntax [https://github.com/thoughtbot/factory_bot_rails]
   gem "factory_bot_rails"
+
+  # Faker is a library for generating fake data [https://github.com/faker-ruby/faker]
+  gem "faker"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Letter Opener is a Rails gem that allows you to preview emails in the browser [https://github.com/ryanb/letter_opener]
+  gem "letter_opener_web", "~> 3.0"
+end
+
+group :test do
+  # Shoulda Matchers is a library for testing Rails models with RSpec [https://matchers.shoulda.io/]
+  gem "shoulda-matchers", "~> 6.0"
+
+  # Simplecov is a code coverage for Ruby [https://github.com/simplecov-ruby/simplecov]
+  gem "simplecov", require: false
+
+  # Set of gems containing strategies for cleaning your database in Ruby [https://github.com/DatabaseCleaner/database_cleaner]
+  gem "database_cleaner-active_record", "~> 2.2"
 end
 
 # Devise is a flexible authentication solution for Rails based on Warden [https://github.com/heartcombo/devise]
