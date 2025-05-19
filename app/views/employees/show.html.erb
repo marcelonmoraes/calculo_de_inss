@@ -1,0 +1,33 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 mb-0">Detalhes do Funcionário</h1>
+    <div class="btn-group">
+      <%= link_to employees_path, class: "btn btn-outline-secondary" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+      <%= link_to edit_employee_path(@employee), class: "btn btn-primary" do %>
+        <i class="bi bi-pencil"></i> Editar
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h3 class="h5 text-muted mb-3">Informações Pessoais</h3>
+          <dl class="row mb-0">
+            <dt class="col-sm-4">Nome</dt>
+            <dd class="col-sm-8"><%= @employee.name %></dd>
+
+            <dt class="col-sm-4">Data de Nascimento</dt>
+            <dd class="col-sm-8"><%= @employee.birth_date&.strftime("%d/%m/%Y") %></dd>
+
+            <dt class="col-sm-4">Salário</dt>
+            <dd class="col-sm-8"><%= number_to_currency(@employee.salary, unit: "R$", separator: ",", delimiter: ".") %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
