@@ -7,5 +7,11 @@ Rails.application.routes.draw do
 
   root "dashboard#index"
 
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      post "employees/calculate_discount", to: "employees#calculate_discount"
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
