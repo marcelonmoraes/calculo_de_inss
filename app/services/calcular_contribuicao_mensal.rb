@@ -1,9 +1,9 @@
 class CalcularContribuicaoMensal
   TAX_RANGES = [
-    { min: 0.0, max: 1518.00, rate: 0.075 },
-    { min: 1518.01, max: 2793.88, rate: 0.09 },
-    { min: 2793.89, max: 4190.83, rate: 0.12 },
-    { min: 4190.84, max: 8157.41, rate: 0.14 }
+    { min: 0.0, max: 1518.00, rate: 0.075, name: "1ª Faixa" },
+    { min: 1518.01, max: 2793.88, rate: 0.09, name: "2ª Faixa" },
+    { min: 2793.89, max: 4190.83, rate: 0.12, name: "3ª Faixa" },
+    { min: 4190.84, max: 8157.41, rate: 0.14, name: "4ª Faixa" }
   ].freeze
 
   def initialize(salario_bruto)

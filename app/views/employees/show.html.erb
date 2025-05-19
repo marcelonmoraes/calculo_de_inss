@@ -25,6 +25,12 @@
 
             <dt class="col-sm-4">Salário</dt>
             <dd class="col-sm-8"><%= number_to_currency(@employee.salary, unit: "R$", separator: ",", delimiter: ".") %></dd>
+
+            <dt class="col-sm-4">Desconto</dt>
+            <dd class="col-sm-8"><%= number_to_currency(@employee.salary_discount, unit: "R$", separator: ",", delimiter: ".") %></dd>
+
+            <dt class="col-sm-4">Faixa de Salário</dt>
+            <dd class="col-sm-8"><%= format_salary_group(@employee.salary) %></dd>
           </dl>
         </div>
       </div>

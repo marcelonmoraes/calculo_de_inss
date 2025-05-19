@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :employee do
-    name { "MyString" }
-    birth_date { "2025-05-18" }
-    salary { "9.99" }
+    name { Faker::Name.name }
+    birth_date { DateTime.current - 18.years }
+    salary { 1000.0 }
+    salary_discount { 75.0 }
   end
 end

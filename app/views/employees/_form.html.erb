@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <div class="row g-3">
+  <div class="row g-3" data-controller="calculate-employee-discount">
     <div class="col-md-6">
       <div class="form-floating mb-3">
         <%= form.text_field :name, class: "form-control", placeholder: "Nome completo", required: true %>
@@ -27,14 +27,22 @@
 
     <div class="col-md-6">
       <div class="form-floating mb-3">
-        <%= form.number_field :salary, class: "form-control", placeholder: "Salário", step: "0.01", min: "0", required: true %>
+        <%= form.number_field :salary, class: "form-control", placeholder: "Salário", step: "0.01", min: "0", required: true, data: { calculate_employee_discount_target: "salary", action: "blur->calculate-employee-discount#calculate" } %>
         <%= form.label :salary, "Salário" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.hidden_field :salary_discount, data: { calculate_employee_discount_target: "salaryDiscountHidden" } %>
+        <%= number_field_tag :salary_discount_value, form.object.salary_discount, disabled: true, class: "form-control", placeholder: "Desconto", step: "0.01", min: "0", max: "951.63", required: true, data: { calculate_employee_discount_target: "salaryDiscount" } %>
+        <%= form.label :salary_discount, "Desconto" %>
       </div>
     </div>
   </div>
 
   <div class="d-flex gap-2 mt-4">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
     <%= link_to "Cancelar", employees_path, class: "btn btn-outline-secondary" %>
   </div>
 <% end %>
