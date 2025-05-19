@@ -7,4 +7,4 @@ class AddAddressFieldsToEmployees < ActiveRecord::Migration[7.1]
     add_column :employees, :city, :string
     add_column :employees, :state, :string
   end
-end 
+end
