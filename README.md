@@ -43,6 +43,7 @@ docker compose build
 ```bash
 docker compose run --rm web rails db:create
 docker compose run --rm web rails db:migrate
+docker compose run --rm web rails db:seed
 ```
 
 4. Inicie a aplicação:
@@ -51,6 +52,8 @@ docker compose up
 ```
 
 A aplicação estará disponível em `http://localhost:3000`
+
+Após acessar a aplicação e efetuar o sign up, em ambiente de desenvolvimento estará disponível o letter_opener, que permite que sejam analisados os e-mails enviados pela aplicação. O User utiliza a estratégia confirmable, ou seja, é necessário acessar http://localhost:3000/letter_opener e clicar no link de confirmação para ativar o e-mail do usuário.
 
 ## Executando Testes
 
