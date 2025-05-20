@@ -1,0 +1,98 @@
+<%= form_with(model: employee, class: "needs-validation", novalidate: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">Erro ao salvar funcionário</h4>
+      <ul class="mb-0">
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row g-3" data-controller="calculate-employee-discount">
+    <h4>Dados do funcionário</h4>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :name, class: "form-control", placeholder: "Nome completo", required: true %>
+        <%= form.label :name, "Nome completo" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.date_field :birth_date, class: "form-control", required: true %>
+        <%= form.label :birth_date, "Data de Nascimento" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.number_field :salary, class: "form-control", placeholder: "Salário", step: "0.01", min: "0", required: true, data: { calculate_employee_discount_target: "salary", action: "blur->calculate-employee-discount#calculate" } %>
+        <%= form.label :salary, "Salário" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.hidden_field :salary_discount, data: { calculate_employee_discount_target: "salaryDiscountHidden" } %>
+        <%= number_field_tag :salary_discount_value, form.object.salary_discount, disabled: true, class: "form-control", placeholder: "Desconto", step: "0.01", min: "0", max: "951.63", required: true, data: { calculate_employee_discount_target: "salaryDiscount" } %>
+        <%= form.label :salary_discount, "Desconto" %>
+      </div>
+    </div>
+  </div>
+
+  <h4>Endereço</h4>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :zip_code, class: "form-control", placeholder: "CEP" %>
+        <%= form.label :zip_code, "CEP" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :street, class: "form-control", placeholder: "Rua" %>
+        <%= form.label :street, "Rua" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :complement, class: "form-control", placeholder: "Complemento" %>
+        <%= form.label :complement, "Complemento" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :neighborhood, class: "form-control", placeholder: "Bairro" %>
+        <%= form.label :neighborhood, "Bairro" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :city, class: "form-control", placeholder: "Cidade" %>
+        <%= form.label :city, "Cidade" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :state, class: "form-control", placeholder: "Estado" %>
+        <%= form.label :state, "Estado" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 mt-4">
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", employees_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 mb-0">Detalhes do Funcionário</h1>
+    <div class="btn-group">
+      <%= link_to employees_path, class: "btn btn-outline-secondary" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+      <%= link_to edit_employee_path(@employee), class: "btn btn-primary" do %>
+        <i class="bi bi-pencil"></i> Editar
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h3 class="h5 text-muted mb-3">Informações Pessoais</h3>
+          <dl class="row mb-0">
+            <dt class="col-sm-4">Nome</dt>
+            <dd class="col-sm-8"><%= @employee.name %></dd>
+
+            <dt class="col-sm-4">Data de Nascimento</dt>
+            <dd class="col-sm-8"><%= @employee.birth_date&.strftime("%d/%m/%Y") %></dd>
+
+            <dt class="col-sm-4">Salário</dt>
+            <dd class="col-sm-8"><%= number_to_currency(@employee.salary, unit: "R$", separator: ",", delimiter: ".") %></dd>
+
+            <dt class="col-sm-4">Desconto</dt>
+            <dd class="col-sm-8"><%= number_to_currency(@employee.salary_discount, unit: "R$", separator: ",", delimiter: ".") %></dd>
+
+            <dt class="col-sm-4">Faixa de Salário</dt>
+            <dd class="col-sm-8"><%= format_salary_group(@employee.salary) %></dd>
+          </dl>
+        </div>
+
+        <div class="col-md-6">
+          <h4 class="h5 text-muted mb-3">Endereço</h4>
+          <dl class="row mb-0">
+            <dt class="col-sm-4">CEP</dt>
+            <dd class="col-sm-8"><%= @employee.zip_code %></dd>
+
+            <dt class="col-sm-4">Rua</dt>
+            <dd class="col-sm-8"><%= @employee.street %></dd>
+
+            <dt class="col-sm-4">Complemento</dt>
+            <dd class="col-sm-8"><%= @employee.complement %></dd>
+
+            <dt class="col-sm-4">Bairro</dt>
+            <dd class="col-sm-8"><%= @employee.neighborhood %></dd>
+
+            <dt class="col-sm-4">Cidade</dt>
+            <dd class="col-sm-8"><%= @employee.city %></dd>
+
+            <dt class="col-sm-4">Estado</dt>
+            <dd class="col-sm-8"><%= @employee.state %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

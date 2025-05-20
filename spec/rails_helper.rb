@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'simplecov'
 require 'devise'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -73,3 +74,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::Test::IntegrationHelpers, type: :request
 end
+
+SimpleCov.start
+SimpleCov.minimum_coverage 90

@@ -1,0 +1,53 @@
+<% content_for :title, "Funcionários" %>
+
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2 mb-0">Funcionários</h1>
+    <%= link_to new_employee_path, class: "btn btn-primary" do %>
+      <i class="bi bi-plus-lg"></i> Novo Funcionário
+    <% end %>
+  </div>   
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Nome</th>  
+              <th>Data de Nascimento</th>
+              <th>Salário</th>
+              <th>Desconto</th>
+              <th>Faixa de Salário</th>
+              <th class="text-end">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @employees.each do |employee| %>
+              <tr>
+                <td><%= employee.name %></td>
+                <td><%= employee.birth_date&.strftime("%d/%m/%Y") %></td>
+                <td><%= number_to_currency(employee.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
+                <td><%= number_to_currency(employee.salary_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
+                <td><%= format_salary_group(employee.salary) %></td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <%= link_to employee_path(employee), class: "btn btn-sm btn-outline-primary", title: "Visualizar" do %>
+                      <i class="bi bi-eye"></i>
+                    <% end %>
+                    <%= link_to edit_employee_path(employee), class: "btn btn-sm btn-outline-secondary", title: "Editar" do %>
+                      <i class="bi bi-pencil"></i>
+                    <% end %>
+                    <%= link_to employee_path(employee), class: "btn btn-sm btn-outline-danger", title: "Excluir", data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este funcionário?" } do %>
+                      <i class="bi bi-trash"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
