@@ -80,3 +80,11 @@ end
 
 # Devise is a flexible authentication solution for Rails based on Warden [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
+
+# Kaminari is a Rails gem for pagination [https://github.com/kaminari/kaminari]
+gem "kaminari"
+
+# Bootstrap5-Kaminari-Views is a Rails gem for pagination [https://github.com/kaminari/bootstrap5-kaminari-views]
+gem "bootstrap5-kaminari-views"
+
+gem "ransack", "~> 4.3"
