@@ -1,6 +1,33 @@
-<%= button_to "Sair", destroy_user_session_path, method: :delete, 
-              class: "btn btn-danger",
-              data: { 
-                turbo_confirm: "Tem certeza que deseja sair?",
-                turbo_method: :delete 
-              } %>
+<div class="dashboard-container">
+  <div class="stats-container">
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-info">
+        <h3>Total de Funcionários</h3>
+        <p class="stat-value"><%= @total_employees %></p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-info">
+        <h3>Média Salarial</h3>
+        <p class="stat-value">R$ <%= number_with_precision(@average_salary, precision: 2) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-card">
+      <h2>Distribuição por Faixa Salarial</h2>
+      <div class="chart-wrapper" 
+           data-controller="dashboard" 
+           data-dashboard-salary-ranges-value="<%= @salary_ranges.to_json %>" 
+           data-dashboard-employee-counts-value="<%= @employee_counts.to_json %>"
+           data-dashboard-total-employees-value="<%= @total_employees %>"
+           data-dashboard-average-salary-value="<%= @average_salary %>"
+           data-action="turbo:load->dashboard#initializeChart">
+        <canvas id="salaryDistributionChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

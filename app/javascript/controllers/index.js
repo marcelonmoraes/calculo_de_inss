@@ -7,5 +7,8 @@ import { application } from "./application"
 import CalculateEmployeeDiscountController from "./calculate_employee_discount_controller"
 application.register("calculate-employee-discount", CalculateEmployeeDiscountController)
 
+import DashboardController from "./dashboard_controller"
+application.register("dashboard", DashboardController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
