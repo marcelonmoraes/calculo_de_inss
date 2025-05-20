@@ -86,3 +86,5 @@ gem "kaminari"
 
 # Bootstrap5-Kaminari-Views is a Rails gem for pagination [https://github.com/kaminari/bootstrap5-kaminari-views]
 gem "bootstrap5-kaminari-views"
+
+gem "ransack", "~> 4.3"

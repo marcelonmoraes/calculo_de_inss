@@ -11,4 +11,8 @@ class Employee < ApplicationRecord
 
     "4ª Faixa"
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "birth_date", "city", "complement", "created_at", "name", "neighborhood", "salary", "salary_discount", "state", "street", "zip_code" ]
+  end
 end
