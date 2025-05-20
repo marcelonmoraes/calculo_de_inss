@@ -13,9 +13,9 @@ class CountEmployeesByRange
 
   def count_employees_in_range(range)
     if range[:max] == Float::INFINITY
-      Employee.where('salary > ?', range[:min]).count
+      Employee.where("salary > ?", range[:min]).count
     else
-      Employee.where('salary > ? AND salary <= ?', range[:min], range[:max]).count
+      Employee.where("salary > ? AND salary <= ?", range[:min], range[:max]).count
     end
   end
 end
