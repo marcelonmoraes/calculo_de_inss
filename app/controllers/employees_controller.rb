@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy ]
 
   def index
-    @employees = Employee.all
+    @employees = Employee.page(params[:page])
   end
 
   def show
