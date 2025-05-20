@@ -23,7 +23,8 @@ export default class extends Controller {
         controller.salaryDiscountHiddenTarget.value = data.salary_discount;
       })
       .catch(error => {
-        console.error("Failed to calculate discount:", error);
+        controller.salaryDiscountTarget.value = 0;
+        controller.salaryDiscountHiddenTarget.value = 0;
       });
   }
 }

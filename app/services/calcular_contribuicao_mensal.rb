@@ -6,31 +6,56 @@ class CalcularContribuicaoMensal
     { min: 4190.84, max: 8157.41, rate: 0.14, name: "4ª Faixa" }
   ].freeze
 
-  def initialize(salario_bruto)
-    @salario_bruto = salario_bruto.to_f
+  attr_reader :discount
+
+  def initialize(gross_salary)
+    @gross_salary = gross_salary.to_f
   end
 
-  def self.calcular(salario_bruto)
-    new(salario_bruto).calcular
+  def self.call(gross_salary)
+    new(gross_salary).call
   end
 
-  def calcular
-    return 0.0 if @salario_bruto <= 0
+  def call
+    gross_salary_valid? && calculate_discount
 
-    total_contribuicao = 0.0
+    self
+  end
+
+  def calculate_discount
+    total_contribution = 0.0
 
     TAX_RANGES.each do |range|
-      break if @salario_bruto <= range[:min]
+      break if @gross_salary <= range[:min]
 
-      base_calculo = [ range[:max], @salario_bruto ].min - range[:min]
-      contribuicao_faixa = base_calculo * range[:rate]
-      total_contribuicao += contribuicao_faixa
+      base_calculation = [ range[:max], @gross_salary ].min - range[:min]
+      contribution_range = base_calculation * range[:rate]
+      total_contribution += contribution_range
     end
 
-    total_contribuicao.round(2)
+    @discount = total_contribution.round(2)
+
+    true
+  end
+
+  def success?
+    @gross_salary.positive?
+  end
+
+  def error_message
+    "salário inválido"
   end
 
   private
 
   private_class_method :new
+  attr_accessor :gross_salary
+  attr_writer :discount
+
+  def gross_salary_valid?
+    return false if @gross_salary.nil? || @gross_salary.zero? || @gross_salary.negative?
+    return false if @gross_salary.to_s.strip.empty?
+
+    true
+  end
 end
