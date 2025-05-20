@@ -15,17 +15,43 @@
           <%= f.search_field :name_cont, class: "form-control", placeholder: "Buscar por nome" %>
           <%= f.submit "Buscar", class: "btn btn-outline-primary" %>
         </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.label :birth_date_gteq, "Data de Nascimento entre", class: "input-group-text" %>
+              <%= f.date_field :birth_date_gteq, class: "form-control" %>
+              <%= f.label :birth_date_lteq, "e", class: "input-group-text" %>
+              <%= f.date_field :birth_date_lteq, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.label :salary_group_eq, "Faixa Salarial", class: "input-group-text" %>
+              <%= f.select :salary_group_eq,
+                  [
+                    ["1ª Faixa", "1ª Faixa"],
+                    ["2ª Faixa", "2ª Faixa"], 
+                    ["3ª Faixa", "3ª Faixa"],
+                    ["4ª Faixa", "4ª Faixa"]
+                  ],
+                  { include_blank: "Selecione uma faixa" },
+                  class: "form-select"
+              %>
+            </div>
+          </div>
+        </div>
       <% end %>
+
       <div class="table-responsive">
-        <table class="table table-hover align-middle">
-          <thead class="table-light">
+        <table class="table table-hover">
+          <thead>
             <tr>
-              <th>Nome</th>  
-              <th>Data de Nascimento</th>
-              <th>Salário</th>
-              <th>Desconto</th>
-              <th>Faixa de Salário</th>
-              <th class="text-end">Ações</th>
+              <th><%= sort_link(@q, :name, "Nome") %></th>
+              <th><%= sort_link(@q, :birth_date, "Data de Nascimento") %></th>
+              <th><%= sort_link(@q, :salary, "Salário") %></th>
+              <th><%= sort_link(@q, :salary_discount, "Desconto") %></th>
+              <th>Faixa Salarial</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -36,15 +62,17 @@
                 <td><%= number_to_currency(employee.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
                 <td><%= number_to_currency(employee.salary_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
                 <td><%= format_salary_group(employee.salary) %></td>
-                <td class="text-end">
+                <td>
                   <div class="btn-group">
-                    <%= link_to employee_path(employee), class: "btn btn-sm btn-outline-primary", title: "Visualizar" do %>
+                    <%= link_to employee_path(employee), class: "btn btn-sm btn-outline-primary" do %>
                       <i class="bi bi-eye"></i>
                     <% end %>
-                    <%= link_to edit_employee_path(employee), class: "btn btn-sm btn-outline-secondary", title: "Editar" do %>
+                    <%= link_to edit_employee_path(employee), class: "btn btn-sm btn-outline-secondary" do %>
                       <i class="bi bi-pencil"></i>
                     <% end %>
-                    <%= link_to employee_path(employee), class: "btn btn-sm btn-outline-danger", title: "Excluir", data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este funcionário?" } do %>
+                    <%= link_to employee_path(employee), 
+                        data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este funcionário?" },
+                        class: "btn btn-sm btn-outline-danger" do %>
                       <i class="bi bi-trash"></i>
                     <% end %>
                   </div>
@@ -53,6 +81,9 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
         <%= paginate @employees, theme: "bootstrap-5" %>
       </div>
     </div>

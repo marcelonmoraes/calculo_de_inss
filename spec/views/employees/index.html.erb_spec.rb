@@ -4,8 +4,9 @@ RSpec.describe "employees/index", type: :view do
   include EmployeesHelper
 
   before(:each) do
-    assign(:employees, [
-      Employee.create!(
+    assign(:q, Employee.ransack)
+    employees = [
+      create(:employee,
         name: "John Doe",
         birth_date: Date.new(1990, 1, 1),
         salary: 1000.00,
@@ -17,7 +18,7 @@ RSpec.describe "employees/index", type: :view do
         state: "SP",
         zip_code: "01234-567"
       ),
-      Employee.create!(
+      create(:employee,
         name: "Jane Smith",
         birth_date: Date.new(1992, 2, 2),
         salary: 2000.00,
@@ -29,7 +30,8 @@ RSpec.describe "employees/index", type: :view do
         state: "RJ",
         zip_code: "89012-345"
       )
-    ])
+    ]
+    assign(:employees, Employee.where(id: employees.map(&:id)).page(1))
   end
 
   it "renders a list of employees" do
@@ -40,12 +42,12 @@ RSpec.describe "employees/index", type: :view do
     expect(rendered).to match(/<a class="btn btn-primary" href="\/employees\/new">/)
 
     # Verifica os cabeçalhos da tabela
-    expect(rendered).to match(/<th>Nome<\/th>/)
-    expect(rendered).to match(/<th>Data de Nascimento<\/th>/)
-    expect(rendered).to match(/<th>Salário<\/th>/)
-    expect(rendered).to match(/<th>Desconto<\/th>/)
-    expect(rendered).to match(/<th>Faixa de Salário<\/th>/)
-    expect(rendered).to match(/<th class="text-end">Ações<\/th>/)
+    expect(rendered).to match(/<th><a[^>]*class="sort_link[^>]*>[^<]*Nome<\/a><\/th>/)
+    expect(rendered).to match(/<th><a[^>]*class="sort_link[^>]*>[^<]*Data de Nascimento<\/a><\/th>/)
+    expect(rendered).to match(/<th><a[^>]*class="sort_link[^>]*>[^<]*Salário<\/a><\/th>/)
+    expect(rendered).to match(/<th><a[^>]*class="sort_link[^>]*>[^<]*Desconto<\/a><\/th>/)
+    expect(rendered).to match(/<th>Faixa Salarial<\/th>/)
+    expect(rendered).to match(/<th>Ações<\/th>/)
 
     # Verifica os dados do primeiro funcionário
     expect(rendered).to match(/<td>John Doe<\/td>/)
