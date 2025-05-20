@@ -11,7 +11,7 @@ RSpec.describe "Api::V1::Employees", type: :request do
 
       expect(response).to have_http_status(:bad_request)
       expect(response.body).to eq({ error: "salário inválido" }.to_json)
-    end    
+    end
 
     it "returns the salary discount based on the salary R$ 1000.00" do
       post api_v1_employees_calculate_discount_path, params: { salary: 1000.00 }

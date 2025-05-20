@@ -50,7 +50,7 @@ RSpec.describe "/employees", type: :request do
       employee = Employee.create! valid_attributes
 
       get employee_url(employee)
-      
+
       expect(response).to be_successful
     end
   end
@@ -107,7 +107,7 @@ RSpec.describe "/employees", type: :request do
       let(:new_attributes) {
         {
           salary: 2000.00,
-          salary_discount: 157.23,
+          salary_discount: 157.23
         }
       }
 
@@ -124,7 +124,7 @@ RSpec.describe "/employees", type: :request do
       it "redirects to the employee" do
         employee = Employee.create! valid_attributes
 
-        patch employee_url(employee), params: { employee: new_attributes }        
+        patch employee_url(employee), params: { employee: new_attributes }
         employee.reload
 
         expect(response).to redirect_to(employee_url(employee))
