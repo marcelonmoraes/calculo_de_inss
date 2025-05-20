@@ -21,6 +21,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+        EmployeeCreateJob.perform_later(@employee.id, current_user.email)
         format.html { redirect_to @employee, notice: "Employee was successfully created." }
         format.json { render :show, status: :created, location: @employee }
       else

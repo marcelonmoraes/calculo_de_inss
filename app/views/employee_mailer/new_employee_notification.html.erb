@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Novo funcionário cadastrado</h1>
+    <p>Um novo funcionário foi cadastrado no sistema.</p>
+    
+    <h2>Dados do funcionário:</h2>
+    <ul>
+      <li><strong>Nome:</strong> <%= @employee.name %></li>
+      <li><strong>Data de Nascimento:</strong> <%= @employee.birth_date.strftime("%d/%m/%Y") %></li>
+      <li><strong>Salário:</strong> <%= number_to_currency(@employee.salary) %></li>
+      <li><strong>Desconto INSS:</strong> <%= number_to_currency(@employee.salary_discount) %></li>
+    </ul>
+
+    <p>Cadastrado por: <%= @user_email %></p>
+  </body>
+</html> 
