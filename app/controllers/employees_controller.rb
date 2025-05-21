@@ -58,6 +58,6 @@ class EmployeesController < ApplicationController
     end
 
     def employee_params
-      params.expect(employee: [ :name, :birth_date, :salary, :salary_discount, :street, :complement, :neighborhood, :city, :state, :zip_code ])
+      params.require(:employee).permit(:name, :birth_date, :salary, :salary_discount, :street, :complement, :neighborhood, :city, :state, :zip_code, employee_contacts_attributes: [ :id, :contact_type, :value, :_destroy ])
     end
 end

@@ -88,3 +88,5 @@ gem "kaminari"
 gem "bootstrap5-kaminari-views"
 
 gem "ransack", "~> 4.3"
+
+gem "cocoon", "~> 1.2"

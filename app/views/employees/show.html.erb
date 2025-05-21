@@ -57,6 +57,18 @@
           </dl>
         </div>
       </div>
+      <hr />
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h4 class="h5 text-muted mb-3">Contatos</h4>
+          <dl class="row mb-0">
+            <% @employee.employee_contacts.each do |contact| %>
+          <dt class="col-sm-4"><%= contact.contact_type %></dt>
+          <dd class="col-sm-8"><%= contact.value %></dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
 </div>

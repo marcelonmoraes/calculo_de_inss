@@ -90,6 +90,7 @@ GEM
     builder (3.3.0)
     childprocess (5.1.0)
       logger (~> 1.5)
+    cocoon (1.2.15)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -399,6 +400,7 @@ DEPENDENCIES
   bootsnap
   bootstrap5-kaminari-views
   brakeman
+  cocoon (~> 1.2)
   cssbundling-rails
   database_cleaner-active_record (~> 2.2)
   debug

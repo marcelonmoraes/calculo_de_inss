@@ -1,4 +1,7 @@
 class Employee < ApplicationRecord
+  has_many :employee_contacts, dependent: :destroy, inverse_of: :employee
+  accepts_nested_attributes_for :employee_contacts, allow_destroy: true, reject_if: :all_blank
+
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :salary, presence: true, numericality: { greater_than_or_equal_to: 0 }
